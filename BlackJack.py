@@ -3,7 +3,7 @@ import random as ra
 #Keeps Track of Cards
 cards = {
     "Ace" : {
-        "Value" : 11,
+        "Value" : 1,
         "Hearts" : True,
         "Diamonds" : True,
         "Spades" : True,
@@ -110,6 +110,7 @@ players = [
 
 #FUNCTIONS TO USE FOR THE GAME
 
+#Used to Deal cards to player
 def DealCards(player):
     notDone = True
     
@@ -132,3 +133,50 @@ def GameSet(player):
 def GameLost(player):
     players[player]["Lost"] = True
 
+
+#GAMEPLAY STARTS HERE
+
+#adding another player (for this code a dealer)
+players.append({
+        "Cards" : [],
+        "Score" : 0,
+        "Lost" : False,
+        "GameSet" : False
+    })
+
+#dealing cards for dealer
+DealCards(0)
+DealCards(0)
+
+#dealing cards for player
+DealCards(1)
+DealCards(1)
+
+#game logic for getting and setting cards
+while( not (players[1]["GameSet"] or players[1]["Lost"]) ):
+    print("\n")
+    print(f"Your Cards :{players[1]["Cards"]}")
+    print("Dealers cards: ? ?")
+    choice = int(input("Get Cards or Set it down(1/2):"))
+    if(choice == 1):
+        DealCards(1)
+        if(players[1]["Score"] > 21):
+            players[1]["Lost"] = True
+    elif (choice == 2):
+        players[1]["GameSet"] = True
+    else:
+        print("Ivalid choice, Choose again")
+
+
+print(f"Your Cards :{players[1]["Cards"]}")
+print(f"Dealers cards: {players[0]["Cards"]}")
+
+
+if(players[1]["Lost"]):
+    print("Dealer Won, Player went bust")
+elif(players[0]["Score"] > players[1]["Score"]):
+    print("Dealer Won")
+elif(players[0]["Score"] < players[1]["Score"]):
+    print("Player Won")
+else:
+    print("Its a Tie")
