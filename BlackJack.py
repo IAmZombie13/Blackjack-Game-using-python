@@ -123,3 +123,12 @@ def DealCards(player):
             notDone = False
     players[player]["Cards"].append(f"{card_value[number]} of {suite[type]}")
     players[player]["Score"] += cards[card_value[number]]["Value"]
+
+#Ends the players turn
+def GameSet(player):
+    players[player]["GameSet"] = True
+    
+#If pLayer loses
+def GameLost(player):
+    players[player]["Lost"] = True
+
