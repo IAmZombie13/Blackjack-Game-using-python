@@ -99,7 +99,7 @@ suite = ['Hearts', 'Diamonds', 'Spades', 'Clubs']
 
 
 #initialising first player
-Players = [
+players = [
     {
         "Cards" : [],
         "Score" : 0,
@@ -108,5 +108,18 @@ Players = [
     }
 ]
 
-#Functions to use for Game
+#FUNCTIONS TO USE FOR THE GAME
 
+def DealCards(player):
+    notDone = True
+    
+    #randomly selects a card value and a suite
+    while notDone:  
+        number = ra.randint(0,len(card_value)-1)
+        type = ra.randint(0,len(suite)-1)
+        #checks if that card has been taken or not
+        if cards[card_value[number]][suite[type]]:
+            cards[card_value[number]][suite[type]] = False
+            notDone = False
+    players[player]["Cards"].append(f"{card_value[number]} of {suite[type]}")
+    players[player]["Score"] += cards[card_value[number]]["Value"]
