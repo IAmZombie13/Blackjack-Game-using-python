@@ -94,9 +94,12 @@ cards = {
         "Clubs" : True       
     }
 }
+card_value = list(cards)
+suite = ['Hearts', 'Diamonds', 'Spades', 'Clubs']
+
 
 #initialising first player
-Player = [
+Players = [
     {
         "Cards" : [],
         "Score" : 0,
@@ -105,4 +108,5 @@ Player = [
     }
 ]
 
+#Functions to use for Game
 
